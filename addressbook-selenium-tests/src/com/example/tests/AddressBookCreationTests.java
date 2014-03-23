@@ -6,8 +6,8 @@ public class AddressBookCreationTests extends TestBase {
   
 	@Test
   public void testNonEmptyAddressBookCreation() throws Exception {
-	openMainPage();
-    gotoAddressBookPage();
+	app.getNavigationHelper().openMainPage();
+    app.getContactHelper().gotoAddressBookPage();
     AddressBookData addressBook = new AddressBookData();
     addressBook.first_name = "first name";
     addressBook.last_name = "last name";
@@ -23,17 +23,17 @@ public class AddressBookCreationTests extends TestBase {
     addressBook.group = "Group 1";
     addressBook.address_2 = "address2";
     addressBook.home_2 = "home 2";
-    fillAddressBookForm(addressBook);
-    submitAddressBookPage();
-    returnToHomePage();
+    app.getContactHelper().fillAddressBookForm(addressBook);
+    app.getContactHelper().submitAddressBookPage();
+    app.getContactHelper().returnToHomePage();
   }
 
   @Test
   public void testEmptyAddressBookCreation() throws Exception {
-    openMainPage();
-    gotoAddressBookPage();
-    fillAddressBookForm(new AddressBookData("", "", "", "", "", "", "", "", "-", "-", "", "", "", ""));
-    submitAddressBookPage();
-    returnToHomePage();
+    app.getNavigationHelper().openMainPage();
+    app.getContactHelper().gotoAddressBookPage();
+    app.getContactHelper().fillAddressBookForm(new AddressBookData("", "", "", "", "", "", "", "", "-", "-", "", "", "", ""));
+    app.getContactHelper().submitAddressBookPage();
+    app.getContactHelper().returnToHomePage();
   }
 }
