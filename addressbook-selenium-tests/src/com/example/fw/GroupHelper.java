@@ -15,7 +15,6 @@ public class GroupHelper extends HelperBase {
 	}
 
 	public void fillGroupForm(GroupData group) {
-		
 		type(By.name("group_name"), group.name);
 		type(By.name("group_header"), group.header);
 		type(By.name("group_footer"), group.footer);
@@ -42,11 +41,10 @@ click (By.name("delete"));
 	public void initGroupModification(int index) {
 		selectGroupByIndex(index);
 		click (By.name("edit")); 		
-	
 	}
+	
 	public void submitGroupModification() {
 		click (By.name("update")); 		
-
 	}
 
 

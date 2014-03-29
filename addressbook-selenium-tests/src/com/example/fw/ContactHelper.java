@@ -6,6 +6,8 @@ import com.example.tests.AddressBookData;
 
 public class ContactHelper extends HelperBase {
 
+	public Object selectGroupToAdd;
+
 	public ContactHelper(ApplicationManager manager) {
 		super(manager);
 	}
@@ -39,4 +41,19 @@ public class ContactHelper extends HelperBase {
 	    type(By.name("phone2"), parameterObject.home_2);
 
 	}
+
+	public void editAddressBook(int index) {
+		click (By.cssSelector("img[alt=\"Edit\"]"));
+	}
+
+	public void deleteAddressBook() {
+		click (By.xpath("(//input[@name='update'])[2]")); 		
+	}
+
+	public void updateAddressBookForm() {
+		click (By.name("update"));
+	}
 }
+	
+	
+	
