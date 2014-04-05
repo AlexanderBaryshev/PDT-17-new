@@ -28,7 +28,7 @@ public boolean isElementPresent(By by) {
     }
   }
 
-private WebElement findElement(By by) {
+public WebElement findElement(By by) {
 	return driver.findElement(by);
 }
 
