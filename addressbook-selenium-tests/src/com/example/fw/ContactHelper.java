@@ -1,8 +1,13 @@
 package com.example.fw;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import com.example.tests.AddressBookData;
+import com.example.tests.GroupData;
 
 public class ContactHelper extends HelperBase {
 
@@ -39,7 +44,6 @@ public class ContactHelper extends HelperBase {
 	    //selectByText(By.name("new_group"), parameterObject.group);
 	    type(By.name("address2"), parameterObject.address_2);
 	    type(By.name("phone2"), parameterObject.home_2);
-
 	}
 
 	public void editAddressBook(int index) {
@@ -53,7 +57,17 @@ public class ContactHelper extends HelperBase {
 	public void updateAddressBookForm() {
 		click (By.name("update"));
 	}
+	
+	public List<AddressBookData> getContacts() {
+		List<AddressBookData> contacts = new ArrayList<AddressBookData>();
+		List<WebElement> checkboxes = driver.findElements(By.name("selected[]"));
+		for (WebElement checkbox : checkboxes) {
+			AddressBookData addressBook=new AddressBookData();
+			String title = checkbox.getAttribute("title");
+			addressBook.first_name = title.substring("Select (".length(), title.length() - ")".length());
+			contacts.add(addressBook);
+		}
+		return contacts;
+	}
 }
-	
-	
 	

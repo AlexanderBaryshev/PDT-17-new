@@ -39,6 +39,30 @@ public class TestBase {
 		return list.iterator();
 	}
 	
+	@DataProvider
+	public Iterator<Object[]> randomValidAddressBookGeneration(){
+		List<Object[]> list = new ArrayList<Object[]>();
+		for (int i = 0; i < 1; i++){
+			AddressBookData addressBook = new AddressBookData();
+			addressBook.first_name = generateRandomstring();
+			addressBook.last_name = generateRandomstring();
+			addressBook.address = generateRandomstring();
+			addressBook.home = generateRandomstring();
+			addressBook.mobile = generateRandomstring();
+			addressBook.work = generateRandomstring();
+			addressBook.email_1 = generateRandomstring();
+			addressBook.email_2 = generateRandomstring();
+			//addressBook.bday = generateRandomstring();
+			//addressBook.bmonth = generateRandomstring();
+			//addressBook.byear = generateRandomstring();
+			addressBook.address_2 = generateRandomstring();
+			addressBook.home_2 = generateRandomstring();
+
+			list.add(new Object[]{addressBook});
+		}
+		return list.iterator();
+	}
+	
 	public String generateRandomstring(){
 		Random rnd = new Random();
 		if (rnd.nextInt(3)== 0){

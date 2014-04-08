@@ -1,18 +1,37 @@
 package com.example.tests;
+import static org.testng.Assert.assertEquals;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 import org.testng.annotations.Test;
 
 public class AddressBookModificationTests extends TestBase   {
 	
-	@Test
-	public void modifySomeAddressBook(){
+	@Test(dataProvider = "randomValidAddressBookGeneration")
+	public void modifySomeAddressBook(AddressBookData addressBook){
 		app.getNavigationHelper().openMainPage();
-		app.getContactHelper().editAddressBook(1);
-		AddressBookData contact = new AddressBookData ();
-		contact.first_name = "first name new";
-		contact.last_name = "last name new";
-		contact.address = "address new";
-		app.getContactHelper().fillAddressBookForm(contact);
+		
+		//save old state
+	    List<AddressBookData> oldList = app.getContactHelper().getContacts();
+	    
+	    Random rnd = new Random();
+	    int index = rnd.nextInt(oldList.size()-1);
+	    
+	    //actions
+		app.getContactHelper().fillAddressBookForm(addressBook);
 		app.getContactHelper().updateAddressBookForm();
 	    app.getContactHelper().returnToHomePage();
+	    
+	  //save new state
+	    List<AddressBookData> newList = app.getContactHelper().getContacts();
+	    	    
+	    //compare state
+	    oldList.remove(index);
+	    oldList.add(addressBook);
+	    Collections.sort(oldList);
+	    assertEquals(newList, oldList);
 	}
+	
 }
